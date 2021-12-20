@@ -1,24 +1,43 @@
-import React from "react";
+// import React from "react";
 import "./FoodCard.css";
+import React, { useState, useEffect } from "react";
 
-export default function FoodCard() {
+export default function FoodCard(props) {
+  const [foodCollect, setfoodCollect] = useState([]);
+  useEffect(() => {
+    fetch(
+      `https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=f95851d7&app_key=3f5d1c83514fa759f22bcd81172185b3`
+    )
+      .then((res) => res.json())
+      .then((data) => setfoodCollect(data.hits));
+    console.log("useEffect Running");
+  }, []);
   return (
-    <div className="container mt-5">
-      <div className="row row-cols-1 row-cols-md-3 g-4">
-        <div className="col">
-          <div className="card h-100">
-            <img src="/images/logo.png" className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
+    <>
+      <div className="container mt-4">
+        <div className="row">
+          {foodCollect.map((f) => (
+            <div className="col-4 g-2">
+              <div className="card h-100">
+                <img
+                  src={f.recipe.image}
+                  className="card-img-top border-5"
+                  alt="..."
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{f.recipe.label}</h5>
+                  <div class="card-header text-bold">Health Labels</div>
+                  <ul class="list-group list-group-flush">
+                    {f.recipe.healthLabels.slice(0, 3).map((health) => (
+                      <li class="list-group-item">{health}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
-    </div>
+    </>
   );
 }
