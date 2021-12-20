@@ -1,0 +1,53 @@
+.SearchBarContainer {
+  width: 100%;
+  /* background-color: rgb(233, 230, 230); */
+  height: 80px;
+  /* border-radius: 10px; */
+  background: #fdfdfd;
+  /* box-shadow: 3px 3px 1px #cdcdcd, -0px -11px 10px #ffffff !important; */
+  /* box-shadow: 1px 2px 15px #e6e6e6, -6px 4px 0px #e6e6e6; */
+}
+.searchBarWrapper {
+  height: 80px;
+  background: #fdfdfd;
+}
+
+.searchBtn {
+  margin-left: 10px;
+  border: 1px solid rgb(214, 214, 214) !important;
+  box-shadow: 6px 6px 12px #e9e9e9, -6px -6px 12px #ffffff !important;
+  color: rgb(138, 136, 136) !important;
+  /* font-weight: bold !important; */
+}
+
+.searchBtn:hover {
+  border: 1px solid rgb(51, 50, 50) !important;
+  transition: 0.5s ease-in-out;
+}
+.leftBarBar {
+  display: flex;
+}
+
+.searchInput {
+  box-shadow: 6px 6px 12px #e9e9e9, -6px -6px 10px #ffffff !important;
+  /* box-shadow: 3px 3px 7px #cdcdcd, -0px -10px 100px #ffffff !important; */
+}
+
+.searchInput:focus {
+  color: rgb(20, 163, 101) !important;
+  box-shadow: inset 6px 6px 12px #e9e9e9, inset -6px -6px 12px #ffffff !important;
+  /* font-weight: 500 !important; */
+}
+.logoText {
+  color: gray;
+  font-family: "Titillium Web", sans-serif;
+}
+.logoContainer{
+ /* display: ; */
+}
+
+.logo{
+    width:45px;
+    height: 45px;
+    margin-right: 10px;
+}
