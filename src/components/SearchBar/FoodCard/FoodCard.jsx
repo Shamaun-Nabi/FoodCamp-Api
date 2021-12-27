@@ -4,14 +4,16 @@ import React, { useState, useEffect } from "react";
 
 export default function FoodCard(props) {
   const [foodCollect, setfoodCollect] = useState([]);
+
+
   useEffect(() => {
     fetch(
-      `https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=f95851d7&app_key=3f5d1c83514fa759f22bcd81172185b3`
+      `https://api.edamam.com/api/recipes/v2?type=public&q=${props.itemName}&app_id=f95851d7&app_key=3f5d1c83514fa759f22bcd81172185b3`
     )
       .then((res) => res.json())
       .then((data) => setfoodCollect(data.hits));
     console.log("useEffect Running");
-  }, []);
+  }, [props.itemName]);
   return (
     <>
       <div className="container mt-4">
@@ -26,10 +28,10 @@ export default function FoodCard(props) {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{f.recipe.label}</h5>
-                  <div class="card-header text-bold">Health Labels</div>
-                  <ul class="list-group list-group-flush">
+                  <div className="card-header text-bold">Health Labels</div>
+                  <ul className="list-group list-group-flush">
                     {f.recipe.healthLabels.slice(0, 3).map((health) => (
-                      <li class="list-group-item">{health}</li>
+                      <li className="list-group-item">{health}</li>
                     ))}
                   </ul>
                 </div>

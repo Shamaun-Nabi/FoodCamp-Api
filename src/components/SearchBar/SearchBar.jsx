@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import FoodCard from "./FoodCard/FoodCard";
 import "./SearchBar.css";
+// import FoodCard from "./components/SearchBar/FoodCard/FoodCard";
 // import { ArrowRight } from "react-bootstrap-icons";
 export default function SearchBar() {
+  const [inputValue, setinputValue] = useState("");
+  const [queryItem, setQueryItem] = useState("Banana");
+  const [error, setError] = useState("d-none");
+
+  const searchItem = (e) => {
+    if (inputValue === "") {
+      setError("d-block");
+    } else {
+      setError("d-none");
+      e.preventDefault();
+      setQueryItem(inputValue);
+    }
+
+    console.log(typeof queryItem);
+  };
+  const searchInput = (e) => {
+    setinputValue(e.target.value);
+    console.log("inputValue=", inputValue);
+  };
   return (
     <>
       <div className="SearchBarContainer">
@@ -12,16 +33,25 @@ export default function SearchBar() {
               <h3 className="logoText">Food Camp</h3>
             </div>
           </div>
-          <div className="leftBarBar col-7">
+          <form method="get" action="" className="leftBarBar col-7">
             <input
+              onChange={searchInput}
               className="form-control w-75 text-center searchInput"
-              placeholder="Search Your Food "
+              placeholder="Search Here"
               type="text"
+              required="required"
             />
-            <button className="btn  searchBtn"> Search</button>
-          </div>
+            <input
+              type="submit"
+              className="btn searchBtn"
+              onClick={searchItem}
+            />
+          </form>
+          <span className={`${error} text-center text-danger`}>Please Fill out</span>
         </div>
       </div>
+      {/* Food Card Area */}
+      <FoodCard itemName={queryItem} />
     </>
   );
 }
